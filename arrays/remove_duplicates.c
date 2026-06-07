@@ -4,7 +4,7 @@
 int removeDuplicates(int arr[], int n) {
     if (n == 0) return 0;
     int left = 0;
-    for (int right = 1; right < n; right++) {   // removed stray '/'
+    for (int right = 1; right < n; right++) {
         if (arr[right] != arr[left]) {
             left++;
             arr[left] = arr[right];
