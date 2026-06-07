@@ -1,15 +1,24 @@
 #include <stdio.h>
 
-int removeDuplicates(int arr[], int n) {
+int removeDuplicates(int a[], int n) {
     if (n == 0) return 0;
+
     int left = 0;
-    for (int right = 1; right < n; right++) {
-        if (arr[right] != arr[left]) {
-            left++;
-            arr[left] = arr[right];
+    int res = 1;
+    int right = 1;
+
+    while (right < n) {
+        if (a[right] == a[right - 1]) {
+            right++;
+            continue;
         }
+        a[left + 1] = a[right];
+        left++;
+        res++;
+        right++;
     }
-    return left + 1;
+
+    return res;
 }
 
 int main() {
@@ -17,16 +26,16 @@ int main() {
     printf("Enter number of elements: ");
     scanf("%d", &n);
 
-    int arr[n];
+    int a[n];
     printf("Enter %d sorted elements: ", n);
     for (int i = 0; i < n; i++)
-        scanf("%d", &arr[i]);
+        scanf("%d", &a[i]);
 
-    int newLen = removeDuplicates(arr, n);
+    int newLen = removeDuplicates(a, n);
 
     printf("Array after removing duplicates: ");
     for (int i = 0; i < newLen; i++)
-        printf("%d ", arr[i]);
+        printf("%d ", a[i]);
 
     printf("\n");
     printf("New length: %d\n", newLen);
